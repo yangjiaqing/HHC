@@ -78,7 +78,10 @@ void trayRelease() {
     trayOpen() ; 
     trayClose() ; 
     delay(2000);
-
+}
+void baseMove(int jd) {
+  
+  sweep(baseServo,baseServo.read(),jd,15);
 }
 
 
