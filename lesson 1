@@ -112,10 +112,22 @@ void setup() {
 }
 
 void loop() {
-
-
-  /// do your magic here ... 
-
- 
-
+  baseMove(30);///This is my magic!!
+   trayRelease(); 
+  rest() ; 
+  prepareToShoot() ;  
+  shoot(); 
+  rest();
+    baseMove(90);///This is my magic!!
+   trayRelease(); 
+  rest() ; 
+  prepareToShoot() ;  
+  shoot(); 
+  rest();  
+  baseMove(120);///This is my magic!!
+   trayRelease(); 
+  rest() ; 
+  prepareToShoot() ;  
+  shoot(); 
+  rest();
 }
