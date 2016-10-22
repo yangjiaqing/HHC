@@ -1,7 +1,121 @@
-void setup()
-{}
-void loop()
-{
-Serial.println("Hello World!");
+#include <Servo.h>
+
+Servo lockServo ; 
+Servo armServo ; 
+Servo trayServo ; 
+Servo baseServo ; 
+
+#define lockOpen    110 
+#define lockClosed  20 
+
+#define armOpen     140 
+#define armArmed    45
+
+#define trayClosed  165
+#define trayOpened  155
+
+
+
+
+
+void rest() {
+  
+  sweep(lockServo,lockServo.read(),lockOpen,15) ; 
+  sweep(armServo,armServo.read(),armOpen,15) ; 
+ 
+}
+
+void prepareToShoot() {
+
+  sweep(lockServo,lockServo.read(),lockClosed,15) ; 
+  sweep(armServo,armServo.read(),armArmed,15) ; 
+  
+}
+
+void shoot() {
+
+  sweep(lockServo,lockServo.read(),lockOpen,15) ; 
+  
+}
+
+
+void sweep ( Servo servo , int from , int to , int speed  ) {
+
+  int pos = 0 ;
+
+  if (from < to) {
+
+    for (pos = from; pos <= to; pos += 1) { 
+      servo.write(pos);              
+      delay(speed);                       
+    }
+    
+  } else {
+
+    for (pos = from; pos >= to; pos -= 1) { 
+      servo.write(pos);              
+      delay(speed);                       
+    }
+
+    
+  }
+
+
+}
+
+
+void trayClose(){
+  sweep(trayServo,trayServo.read(),trayClosed,22) ; 
+}
+
+void trayOpen() {
+  sweep(trayServo,trayServo.read(),trayOpened,22) ; 
+}
+
+void trayRelease() {
+
+    trayClose() ; 
+    trayOpen() ; 
+    trayClose() ; 
+    delay(2000);
+
+}
+
+
+
+void setup() {
+
+  /// connect servo motors
+
+  lockServo.attach(3); 
+  armServo.attach(5); 
+  trayServo.attach(6);
+  baseServo.attach(9) ;  
+
+
+  
+
+  trayClose();   
+  delay(2500); /// you have time to load bullets
+  trayRelease(); 
+  
+
+  
+  
+  rest() ; 
+  prepareToShoot() ;  
+  shoot(); 
+  rest(); 
+
+  
+
+}
+
+void loop() {
+
+
+  /// do your magic here ... 
+
+ 
 
 }
