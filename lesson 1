@@ -12,7 +12,7 @@ Servo baseServo ;
 #define armArmed    45
 
 #define trayClosed  177
-#define trayOpened  172i
+#define trayOpened  172
 
 
 
