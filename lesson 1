@@ -11,8 +11,8 @@ Servo baseServo ;
 #define armOpen     140 
 #define armArmed    45
 
-#define trayClosed  165
-#define trayOpened  155
+#define trayClosed  177
+#define trayOpened  172i
 
 
 
@@ -21,14 +21,14 @@ Servo baseServo ;
 void rest() {
   
   sweep(lockServo,lockServo.read(),lockOpen,15) ; 
-  sweep(armServo,armServo.read(),armOpen,15) ; 
+  sweep(armServo,armServo.read(),armOpen,5) ; 
  
 }
 
 void prepareToShoot() {
 
   sweep(lockServo,lockServo.read(),lockClosed,15) ; 
-  sweep(armServo,armServo.read(),armArmed,15) ; 
+  sweep(armServo,armServo.read(),armArmed,5) ; 
   
 }
 
@@ -87,21 +87,32 @@ void baseMove(int jd) {
 
 
 void setup() {
-
+Serial.begin(9600);
   /// connect servo motors
 
   lockServo.attach(3); 
-  armServo.attach(5); 
+  armServo.attach(5) ; 
   trayServo.attach(6);
   baseServo.attach(9) ;  
-
-
-  
+ Serial.begin(9600);
+    Serial.println(baseServo.read());
+  Serial.println("I've pritened the baseServo position");
+    Serial.println(trayServo.read());
+  Serial.println("I've pritened the trayServo position");  
+  Serial.println(armServo.read());
+  Serial.println("I've pritened the armServo position");
+    Serial.println(lockServo.read());
+  Serial.println("I've pritened the lockServo position");
+sweep(baseServo,0,180,15);
+sweep(lockServo,0,180,15);
+sweep(armServo,0,180,15);
+sweep(trayServo,0,180,15);
 
   trayClose();   
-  delay(2500); /// you have time to load bullets
+  delay(250); /// you have time to load bullets
   trayRelease(); 
-  
+   Serial.begin(9600);
+    Serial.println("Start");
 
   
   
@@ -109,28 +120,44 @@ void setup() {
   prepareToShoot() ;  
   shoot(); 
   rest(); 
-
-  
-
+ Serial.begin(9600);
+    Serial.println("Going to loop");
 }
 
 void loop() {
-  baseMove(30);///This is my magic!!
+baseMove(30);///This is my magic!!
    trayRelease(); 
   rest() ; 
   prepareToShoot() ;  
   shoot(); 
   rest();
+    Serial.println("tray is moving");
+       Serial.println(trayServo.read());
+  Serial.println("I've pritened the trayServo position");
     baseMove(90);///This is my magic!!
    trayRelease(); 
   rest() ; 
+    Serial.println("base is moving");
+       Serial.println(baseServo.read());
+  Serial.println("I've pritened the baseServo position");
   prepareToShoot() ;  
   shoot(); 
   rest();  
+    Serial.println("arm is moving");
+       Serial.println(armServo.read());
+  Serial.println("I've pritened the armServo position");
   baseMove(120);///This is my magic!!
    trayRelease(); 
   rest() ; 
+  Serial.begin(9600);
+    Serial.println("base is moving again");
+       Serial.println(baseServo.read());
+  Serial.println("I've pritened the baseServo position");
   prepareToShoot() ;  
   shoot(); 
   rest();
+  Serial.begin(9600);
+  Serial.println("Over");
 }
+
+ 
