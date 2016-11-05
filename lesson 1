@@ -125,7 +125,21 @@ sweep(trayServo,0,180,15);
 }
 
 void loop() {
-baseMove(30);///This is my magic!!
+  int lock;
+  int arm;
+  int basa;
+  lock=Serial.parseInt();
+  arm=Serial.parseInt();
+ basa=Serial.parseInt();
+ Serial.println("Have red lock, arm, basa");
+ Serial.print(lock);
+ Serial.print(arm);
+ Serial.print(basa);
+     machine_controler(lock,arm,basa);
+}
+
+void machine_controler(int basa,)
+{baseMove(basa);///This is my magic!!
    trayRelease(); 
   rest() ; 
   prepareToShoot() ;  
@@ -159,5 +173,5 @@ baseMove(30);///This is my magic!!
   Serial.begin(9600);
   Serial.println("Over");
 }
-
+ 
  
