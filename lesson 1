@@ -125,21 +125,31 @@ sweep(trayServo,0,180,15);
 }
 
 void loop() {
-  int lock;
-  int arm;
-  int basa;
-  lock=Serial.parseInt();
-  arm=Serial.parseInt();
- basa=Serial.parseInt();
+  int basa1;
+  int basa2;
+  int basa3;
+ basa1=Serial.parseInt();
+ basa2=Serial.parseInt();
+ basa3=Serial.parseInt();
  Serial.println("Have red lock, arm, basa");
- Serial.print(lock);
- Serial.print(arm);
- Serial.print(basa);
-     machine_controler(lock,arm,basa);
+switch(basa1){
+case 1:
+     machine_controler(30);
+     break;
+case 2:
+     machine_controler(90);
+     break;
+case 3:
+     machine_controler(120);
+     break;
+default:
+machine_controler(60);
+break;
+}
 }
 
-void machine_controler(int basa,)
-{baseMove(basa);///This is my magic!!
+void machine_controler(int basa1)
+{baseMove(basa1);///This is my magic!!
    trayRelease(); 
   rest() ; 
   prepareToShoot() ;  
@@ -148,30 +158,9 @@ void machine_controler(int basa,)
     Serial.println("tray is moving");
        Serial.println(trayServo.read());
   Serial.println("I've pritened the trayServo position");
-    baseMove(90);///This is my magic!!
    trayRelease(); 
   rest() ; 
     Serial.println("base is moving");
        Serial.println(baseServo.read());
   Serial.println("I've pritened the baseServo position");
-  prepareToShoot() ;  
-  shoot(); 
-  rest();  
-    Serial.println("arm is moving");
-       Serial.println(armServo.read());
-  Serial.println("I've pritened the armServo position");
-  baseMove(120);///This is my magic!!
-   trayRelease(); 
-  rest() ; 
-  Serial.begin(9600);
-    Serial.println("base is moving again");
-       Serial.println(baseServo.read());
-  Serial.println("I've pritened the baseServo position");
-  prepareToShoot() ;  
-  shoot(); 
-  rest();
-  Serial.begin(9600);
-  Serial.println("Over");
 }
- 
- 
