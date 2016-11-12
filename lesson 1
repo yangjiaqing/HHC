@@ -163,4 +163,5 @@ void machine_controler(int basa1)
     Serial.println("base is moving");
        Serial.println(baseServo.read());
   Serial.println("I've pritened the baseServo position");
+  
 }
