@@ -136,8 +136,7 @@ void loop() {
  basa4=Serial.parseInt();
  basa5=Serial.parseInt();
  Serial.println("Have red lock, arm, basa");
-     machine_controler(base1);
-     break;
+     machine_controler(basa1);
 }
 
 void machine_controler(int basa1)
