@@ -128,24 +128,16 @@ void loop() {
   int basa1;
   int basa2;
   int basa3;
+  int basa4;
+  int basa5;
  basa1=Serial.parseInt();
  basa2=Serial.parseInt();
  basa3=Serial.parseInt();
+ basa4=Serial.parseInt();
+ basa5=Serial.parseInt();
  Serial.println("Have red lock, arm, basa");
-switch(basa1){
-case 1:
-     machine_controler(30);
+     machine_controler(base1);
      break;
-case 2:
-     machine_controler(90);
-     break;
-case 3:
-     machine_controler(120);
-     break;
-default:
-machine_controler(60);
-break;
-}
 }
 
 void machine_controler(int basa1)
