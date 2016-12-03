@@ -80,7 +80,8 @@ void trayRelease() {
     delay(2000);
 }
 void baseMove(int jd) {
-  
+   Serial.println("basemove jd");
+    Serial.println(jd);
   sweep(baseServo,baseServo.read(),jd,15);
 }
 
@@ -130,13 +131,23 @@ void loop() {
   int basa3;
   int basa4;
   int basa5;
- basa1=Serial.parseInt();
+  int basa6;
+ basa1=Serial.read();
+ if(basa1=='A')
+ {Serial.read();
  basa2=Serial.parseInt();
  basa3=Serial.parseInt();
  basa4=Serial.parseInt();
  basa5=Serial.parseInt();
- Serial.println("Have red lock, arm, basa");
-     machine_controler(basa1);
+ basa6=Serial.parseInt();
+ Serial.println(basa1);
+ Serial.println(basa2);
+ Serial.println(basa3);
+ Serial.println(basa4);
+ Serial.println(basa5);
+ Serial.println(basa6);
+ baseMove(basa2);
+}
 }
 
 void machine_controler(int basa1)
