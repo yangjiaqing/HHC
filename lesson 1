@@ -87,17 +87,17 @@ void baseMove(int jd) {
 void armMove(int jd) {
    Serial.println("armmove jd");
     Serial.println(jd);
-  sweep(baseServo,armServo.read(),jd,15);
+  sweep(armServo,armServo.read(),jd,15);
 }
 void trayMove(int jd) {
    Serial.println("traymove jd");
     Serial.println(jd);
-  sweep(baseServo,trayServo.read(),jd,15);
+  sweep(trayServo,trayServo.read(),jd,15);
 }
 void lockMove(int jd) {
    Serial.println("lockmove jd");
     Serial.println(jd);
-  sweep(baseServo,lockServo.read(),jd,15);
+  sweep(lockServo,lockServo.read(),jd,15);
 }
 
 void setup() {
